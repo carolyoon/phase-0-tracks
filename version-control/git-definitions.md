@@ -9,4 +9,4 @@ A branch is a parallel version of a repository, an independent line diverged fro
 * What is a commit? What makes a good commit message?
 A commit records when a file has been added,deleted or changed to the repository. A good commit message is specific and descriptive.
 * What is a merge conflict?
-A merge conflict is an error that occurs if the same line in a file is changed differently or if a file has been deleted and modified because Git is unable to decipher which change is correct.
+A merge conflict is an error that occurs if the same line in a file is changed differently or if a file has been deleted and modified because Git is unable to decipher which change is the correct one.
