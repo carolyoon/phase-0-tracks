@@ -1,0 +1,22 @@
+#contact-info {
+	font-size: .8em;
+}
+
+#contact-info :last-child {
+	font-variant: small-caps;
+}
+
+.job {
+	background-color: #e9e5dc;
+	padding: 10px;
+	margin-top: 1cm;
+	border-radius: 50px;
+}
+
+.accomplishments {
+	font-size: .8em;
+}
+
+#contact-info a:hover {
+	color: green;
+}
