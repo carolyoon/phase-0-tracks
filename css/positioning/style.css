@@ -1,6 +1,6 @@
 #octopus {
     position: fixed;
-    bottom: 200px;
+    bottom: 330px;
     right: 700px;
     left: 700px;
     width: 300px;
@@ -9,7 +9,7 @@
 
  #hat {
     position:fixed;
-    bottom: 540px;
+    bottom: 670px;
     right: 700px;
     left: 700px;
     width: 300px;
@@ -17,7 +17,7 @@
 
 #glasses {
 	position:fixed;
-	bottom: 360px;
+	bottom: 490px;
     right: 700px;
     left: 700px;
     width: 300px;
