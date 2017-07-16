@@ -9,16 +9,35 @@ cite {
   margin-top: 10px;
 }
 
+
+body {
+  border: 1px solid red;
+  max-width: 960px;
+  text-align: center;
+}
+
+#main-area {
+  border: 1px solid blue;
+  width: 70%;
+  min-width: 60%;
+  float: bottom;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div#external-links {
+  border: 1px solid green;
+  width: 20%;
+  min-width: 20%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
 }
 
-#external-links {
-  width: 200px;
-  display: inline-block;
-  vertical-align: text-top;
-}
 /* you're welcome to edit the
 image, figure, and figcaption CSS if you'd like, 
 but it's optional! */
@@ -36,12 +55,22 @@ figcaption {
   text-align: right;
 }
 
-body {
-  max-width: 960px;
+@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
 }
 
-main {
-  width: 756px;
-  display: inline-block;
-  vertical-align: text-top;
+@media screen and (min-width: 501px) {
+  body {
+    background-color: royalblue;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  body {
+    max-width: 100%;
+    max-height: 50%px;
+    background-image: url('https://static.pexels.com/photos/87452/flowers-background-butterflies-beautiful-87452.jpeg');
+  }
 }
