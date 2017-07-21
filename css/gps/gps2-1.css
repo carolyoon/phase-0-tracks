@@ -1,0 +1,35 @@
+
+header {
+  text-align: center;
+  background-color: white;
+}
+
+.column-1 {
+  display: inline-block;
+  border-style: solid;
+  width: 35%;
+  padding: 15px;
+  margin: 5px;
+  background-color: pink;
+}
+
+.column-2 {
+  display: inline-block;
+  border-style: solid; 
+  vertical-align: top;
+  padding: 15px;
+  margin: 5px;
+  background-color: orange;
+}
+
+footer {
+  text-align: center;
+  border-style: solid;
+  margin: 5px;
+  padding: 15px;
+  background-color: white;
+}
+
+body {
+  background-image: url(https://blog.beeminder.com/wp-content/uploads/2013/08/bart.gif);
+}
