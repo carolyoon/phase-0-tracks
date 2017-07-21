@@ -1,0 +1,2 @@
+-Push a button, up or down, until it lights up 
+- 
