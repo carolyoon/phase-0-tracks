@@ -1,2 +1,26 @@
--Push a button, up or down, until it lights up 
-- 
+
+Elevator Algorithm 
+
+-Move to the front of the elevator buttons (aside from the elevator doors)
+-Press the button with the “up” arrow if going to a floor above the ground floor,
+	If not, press the “down” arrow.
+-Wait for the elevator to reach the ground floor.
+-Once the elevator doors open, enter the elevator	
+	If there are occupants in the elevator, step aside their path and wait for them to 	walk out prior to entering.
+-Turn around and face back toward the elevator doors upon entering.
+-Press the number of the floor level you wish you to go to. 
+-Ride the elevator until it reaches that floor
+	If the elevator doors open on another level, stay put and do not exit the 		elevator.
+-Once the elevator reaches the floor you selected, exit the elevator 
+
+Using a Keurig
+
+-Flip the switch located behind the right corner of the machine from left to right to turn the machine on. 
+-Wait for the machine to heat up the water, indicated by the blue light next to “heating” moving next to “ready”.
+-Open the Keurig pod container and place a new pod inside.
+	If theres a used pod already inside the container, remove that pod first. 
+-Close the pod container.
+-Place a mug/thermos under the coffee dispensing area
+-Press the left arrow twice to set the lowest setting for the amount of liquid (in ounces) coffee.
+-Press the “start” button.
+
