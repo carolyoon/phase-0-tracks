@@ -1,3 +1,4 @@
+
 Elevator Algorithm 
 
 -Move to the front of the elevator buttons (aside from the elevator doors)
@@ -22,3 +23,4 @@ Using a Keurig
 -Place a mug/thermos under the coffee dispensing area
 -Press the left arrow twice to set the lowest setting for the amount of liquid (in ounces) coffee.
 -Press the “start” button.
+
