@@ -33,9 +33,21 @@ def decrypt(string)
 	string
 end
 
-encrypt("abc") 
-encrypt("zed") 
-decrypt("bcd") 
-decrypt("afe")
+# encrypt("abc") 
+# encrypt("zed") 
+# decrypt("bcd") 
+# decrypt("afe")
 
-print decrypt(encrypt("swordfish"))
+# print decrypt(encrypt("swordfish"))
+
+puts "Would you like to decrypt or encrypt a password?"
+answer = gets.chomp
+puts "What is the password?"
+password = gets.chomp
+if answer == "decrypt"
+	decrypt(password)
+else 
+	encrypt(password)
+end 
+
+print password
