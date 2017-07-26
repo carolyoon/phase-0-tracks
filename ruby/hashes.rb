@@ -5,7 +5,7 @@
 #Prompt the designer/user for all of this information 
 #Convert any user input to the appropriate data type
 
-puts "Enter the client's first name: "
+puts "Enter the client's full name: "
 client_name = gets.chomp
 
 puts "Enter the client's age: "
@@ -22,19 +22,27 @@ client_color = gets.chomp
 
 puts "Does the client want to remodel the entire home (Yes/No)?"
 client_home = gets.chomp.downcase
-	if client_home == "Yes"
+	if client_home == "yes"
 		client_home = true
-		puts client_home
+		puts "The entire home includes the closets and garage. "
 	else 
+		puts "Exclude the closets and garage."
 		client_home = false
-		puts "No, not the entire home."
 	end 
 
 puts "Enter the client's budget range: "
 client_budget = gets.chomp.to_i 
 
 #Print the hash back out to the screen when the designer has answered all of the questions.
-client_data = {name: client_name, age: client_age, children: client_children, theme: client_theme, color: client_color, home: client_home, budget: client_budget}
+client_data = {
+	"name" => client_name, 
+	age: client_age, 
+	children: client_children, 
+	theme: client_theme, 
+	color: client_color, 
+	home: client_home, 
+	budget: client_budget
+}
 
 p client_data 
 
@@ -42,7 +50,7 @@ p client_data
 #If designer says "none", skip it. If not, ask for a new value and update the selected key. 
 puts "Are there any changes you would like to make? Enter 'none' if everything is correct."
 designer_input = gets.chomp.downcase
-	if designer_input = "none"
+	if designer_input == "none"
 		puts "Client Data profile is complete."
 	else 
 		puts "What changes would you like to make? Choose from 'Name', 'Age', 'Children', 'Theme', 'Color', 'Home', 'Budget': "
@@ -53,13 +61,13 @@ designer_input = gets.chomp.downcase
 
 	if data_correction == :name
 		puts "Enter the correct name: "
-		client_data[:name] = gets.chomp
+		client_data["name"] = gets.chomp
 	elsif data_correction == :age
 		puts "Enter the correct age: "
 		client_data[:age] = gets.chomp.to_i
-	elsif data_correction == :children.to_i 
+	elsif data_correction == :children 
 		puts "Enter the correct number of children:"
-		client_data[:children] = gets.chomp
+		client_data[:children] = gets.chomp.to_i
 	elsif data_correction == :theme
 		puts "Enter the correct preferred decor theme: "
 		client_data[:theme] = gets.chomp
