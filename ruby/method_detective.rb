@@ -46,5 +46,5 @@
 a = "z".ord
 a.to_s.insert(3, " 223")
 
-"How many times does the letter 'a' appear in this string?".count
+"How many times does the letter 'a' appear in this string?".count("a")
 => 4
