@@ -14,8 +14,7 @@ Alter_egos = {
   'Clark Kent': 'Superman',
   'Logan': 'Wolverene',
   'Peter Parker': 'Spiderman',
-  'Tony Stark': 'Iron Man'
-  
+  'Tony Stark': 'Iron Man'  
 }
 
 Fruits.each do |fruit|
