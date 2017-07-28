@@ -3,28 +3,56 @@
 zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
                               "shotgun", "compass", "CB radio", "batteries"]
 
-# 1. Iterate through the zombie_apocalypse_supplies array using #each,
-# printing each item in the array separated by an asterisk
-# ----
+# # 1. Iterate through the zombie_apocalypse_supplies array using #each,
+# # printing each item in the array separated by an asterisk
+# # ----
+# star_space = zombie_apocalypse_supplies.each do |item|
+#   puts item + "*"
+# end 
 
 # 2. Create a method to see if a particular item (string) is in the
-# zombie_apocalypse_supplies using #each.
-# For instance: are boots in your list of supplies?
-# ----
+# # zombie_apocalypse_supplies using #each.
+# # For instance: are boots in your list of supplies?
+# # ----
+# def in_the_list
+#   zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
+#                               "shotgun", "compass", "CB radio", "batteries"]
+#   zombie_apocalypse_supplies.each do |supplies|
+#     if supplies == "rations"
+#       puts "yes"
+#     end
+#   end
+# end 
+
+# in_the_list
 
 # 3. You can't carry too many things, you've only got room in your pack for 5.
 # Remove items in your zombie_apocalypse_supplies in any way you'd like,
 # leaving only 5, using #each.
-# ----
+# # ----
+# remove_items = zombie_apocalypse_supplies.each do |supplies|
+#   zombie_apocalypse_supplies.delete_if { |supplies| supplies.length > 8 }
+# end 
+
+# puts remove_items
 
 # 4. You found another survivor! This means you can combine your supplies.
 # Create a new combined supplies list out of your zombie_apocalypse_supplies
 # and their supplies below. You should get rid of any duplicate items.
 # Find the built-in method that helps you accomplish this in the Ruby
-# documentation for Arrays.
-other_survivor_supplies = [ "warm clothes", "rations", "compass", "camp stove",
-                            "solar battery", "flashlight"]
-# ----
+# # documentation for Arrays.
+# other_survivor_supplies = [ "warm clothes", "rations", "compass", "camp stove",
+#                             "solar battery", "flashlight"]
+
+# #first solution
+# combined_supplies = zombie_apocalypse_supplies + other_survivor_supplies
+# combined_supplies.uniq! 
+# puts combined_supplies
+
+# #second solution 
+# combined_supplies = zombie_apocalypse_supplies | other_survivor_supplies
+# puts combined_supplies
+
 
 # Hash Drills
 
@@ -40,7 +68,12 @@ extinct_animals = {
 
 # 1. Iterate through extinct_animals hash using #each, printing each key/value pair
 # with a dash in between the key and value, and an asterisk between each pair.
-# ----
+
+animal_year = extinct_animals.each do |animal, year|
+  print animal "-" year
+end 
+
+extinct_animals('Passenger Pigeon', 1914)
 
 # 2. Keep only animals in extinct_animals if they were extinct before
 # the year 2000, using #each.
