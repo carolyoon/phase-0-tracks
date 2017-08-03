@@ -43,3 +43,24 @@ bad_santa.speak
 bad_santa.eat_milk_and_cookies("oatmeal")
 puts bad_santa.celebrate_birthday
 bad_santa.get_mad_at("Vixen")
+
+def random_genders 
+	genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A", "no gender"]
+	rand_gender = genders.sample 
+	puts rand_gender
+end
+
+def random_ethnicities
+	ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A", "Korean"]
+	rand_ethnicity = ethnicities.sample
+	puts rand_ethnicity
+end 
+
+def random_age
+	age = [0..140].to_a
+	rand_age = age.select 
+end 
+
+puts "Santa's gender is #{@gender}."
+puts "Santa's ethnicity is #{@ethnicity}."
+puts "Santa is #{@age} years old."  
