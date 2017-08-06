@@ -1,3 +1,12 @@
+#TodoList should be a class that has methods that can ... 
+  #store the list items given at initialization
+  #add items to the list
+  #delete items to the list
+  #retrieve items in the list 
+
+
+require_relative 'todolist'
+
 describe TodoList do
   let(:list) { TodoList.new(["do the dishes", "mow the lawn"]) }
 
