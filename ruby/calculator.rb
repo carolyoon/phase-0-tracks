@@ -1,4 +1,5 @@
 class Calculator
+
   def add(x,y)
     x + y
   end
@@ -12,6 +13,7 @@ class Calculator
   end
 
   def divide(x,y)
-  	x / y
-  end 
-end
+	x / y
+  end
+  
+end 
