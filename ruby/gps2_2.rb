@@ -1,4 +1,3 @@
-
 # Method to create a list
 # input: string of items separated by spaces (example: "carrots apples cereal pizza")
 # steps: 
@@ -93,3 +92,4 @@ What concepts were solidified in this challenge, and what concepts are still con
 The concept of implicit return and the syntax of a program is still confusing to me. This challenge really solidified working with hashes and arrays. 
 	
 end
+
