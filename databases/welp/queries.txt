@@ -1,0 +1,31 @@
+Pairing 8.4
+How do you Join 3 tables?
+Select every column we want from each table
+From the table we want on the left
+Join next table, based on certain conditions
+Continue to join the next table in the same way, until you're done joining tables.
+#3.
+SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment
+   ...> FROM users
+   ...> JOIN businesses
+   ...> ON reviews.business_id=businesses.id
+   ...> JOIN reviews
+   ...> ON reviews.user_id=users.id;
+Output:
+Mindy       Kaling      Amir's Towing  5           Great Service!
+Brad        Pitt        Sushi World    4           Great Sushi!
+Angelina    Jolie       Grundy Hollow  2           OK wedding! Se
+Hallie      Barry       Lotus Yoga     5           Killer Vinyasa
+Tommy       Cruze       Sushi World    5           Delicious!
+Larry       McDavid     Grundy Hollow  4           Amazing Weddin
+#4
+SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment
+   ...> FROM users
+   ...> JOIN businesses
+   ...> ON reviews.business_id=businesses.id
+   ...> JOIN reviews
+   ...> ON reviews.user_id=users.id
+   ...> WHERE businesses.name = "Sushi World";
+Output:
+Brad        Pitt        Sushi World  4           Great Sushi!
+Tommy       Cruze       Sushi World  5           Delicious!
