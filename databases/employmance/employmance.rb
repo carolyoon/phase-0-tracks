@@ -6,11 +6,12 @@
 	# Create current position method 
 	# Create current pay method
 	# Create last raise method 
-	# Create evaluation date method
-	# Create evaluation method
-	# Create alter method 
-	# Create add employee method
+	# Create evaluation score method
+	# Create search methods
+	# Create update methods 
+	# Create add employee method /loop
 	# Create remove employee method
+	# Create directory method 
 	
 	#Provide user interface
 
@@ -84,8 +85,8 @@ end
 
 def update_position(db, current_position, first_name)
 	puts "Enter #{first_name}'s new position: "
-	new_position = gets.chomp
-	update_position = db.execute("UPDATE employees SET current_position=? WHERE first_name = ?;", [new_position, first_name])
+	new_position = gets.chomp.capitalize 
+	db.execute("UPDATE employees SET current_position=? WHERE first_name = ?;", [new_position, first_name])
 	puts "#{first_name}'s position has been updated to #{new_position}."
 end
 
@@ -93,13 +94,25 @@ def update_pay_and_month(db, current_pay, last_raise, first_name)
 	puts "Enter #{first_name}'s new pay rate per hour: "
 	new_pay = gets.chomp.to_i
 	update_pay = db.execute("UPDATE employees SET current_pay=? WHERE first_name=?;", [new_pay, first_name])
-	puts "What is the month? "
-	new_last_raise = db.execute("UPDATE employees SET last_raise=? WHERE first)name=?", [new_last_raise, first_name])
-	puts "#{first_name}'s salary has been updated to $#{new_pay} per hour in the month of #{new_last_raise}." 
+	puts "Enter the current month: "
+	current_month = gets.chomp.capitalize
+	db.execute("UPDATE employees SET last_raise=? WHERE first_name=?;", [current_month, first_name])
+	puts "#{first_name}'s salary has been updated to $#{new_pay} per hour in the month of #{current_month}." 
 end 
 
+def update_evaluation_score(db, evaluation_score, first_name)
+	puts "Enter #{first_name}'s evaluation_score for this month: "
+	update_score = gets.chomp.to_i
+	db.execute("UPDATE employees SET evaluation_score=? WHERE first_name=?;", [update_score, first_name])
+	puts "#{first_name}'s new evaluation score is #{update_score}."
 
 end
+
+def remove_employee(db, first_name)
+	puts "Enter the first name of the employee you wish to remove: "
+	db.execute("DELETE FROM employees WHERE first_name=?;", [first_name])
+	puts "#{first_name} has been removed."
+end 
 
 def print_all(db)
 	puts "EMPLOYMANCE EMPLOYMATION"
@@ -115,11 +128,60 @@ def print_all(db)
 	end 
 end
 
-
+def directory(db)
+	puts "EMPLOYMANCE EMPLOYMATION"
+	puts "--------------------------"
+	puts "Please select one of the following options: "
+	puts "[1] Add Employee"
+	puts "[2] Search by Employee Name"
+	puts "[3] Search by Month of Raise"
+	puts "[4] Update Employee's Position"
+	puts "[5] Update Employee's Pay Rate and Month of Raise"
+	puts "[6] Update Employee's Month Evaluation Score"
+	puts "[7] Remove Employee"
+	puts "[8] Display All"
+	puts "[9] Exit Program"
+	puts "--------------------------"
+	select_option = false
+	until select_option
+		user_input = gets.chomp
+		case 
+		when user_input == "1"
+			input_information
+			select_option = true
+		when user_input == "2"
+			search_by_name
+			select_option = true
+		when user_input == "3"
+			search_by_last_raise
+			select_option = true
+		when user_input == "4"
+			update_position
+			select_option = true
+		when user_input == "5"
+			update_pay_and_month
+			select_option = true
+		when user_input == "6"
+			update_evaluation_score
+			select_option = true
+		when user_input == "7"
+			remove_employee
+			select_option = true
+		when user_input == "8"
+			print_all
+			select_option = true 
+		when user_input == "9"
+			select_option = true
+		else 
+			puts "Select an option between 1 and 9."
+		end
+	end
+end 
 
 # input_information(db)
 # search_by_name(db, "Caroline")
 # search_by_last_raise(db, "July")
 # print_all(db)
 # update_position(db, "manager", "Carol")
+update_pay_and_month(db, 14, "July", "Carol")
 
