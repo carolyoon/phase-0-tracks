@@ -63,12 +63,12 @@ end
 def search_by_name(db, first_name)
 	search_by_name = db.execute("SELECT * FROM employees where first_name = ?;", [first_name])
 	search_by_name.each do |data|
-		puts "Name:#{data["first_name"]} #{data["last_name"]}"
-		puts "Date of Hire: #{data["hire_date"]}"
-		puts "Position: #{data["current_position"]}"
-		puts "Salary: $#{data["current_pay"]} per hour"
-		puts "Last Raise: #{data["last_raise"]}"
-		puts "Monthly Evaluation Score: #{data["evaluation_score"]}"
+		puts "Name:\t#{data["first_name"]} #{data["last_name"]}"
+		puts "Date of Hire:\t#{data["hire_date"]}"
+		puts "Position:\t#{data["current_position"]}"
+		puts "Salary:\t$#{data["current_pay"]} per hour"
+		puts "Last Raise:\t#{data["last_raise"]}"
+		puts "Monthly Evaluation Score:\t#{data["evaluation_score"]}"
 	end 
 end
 
@@ -76,9 +76,9 @@ def search_by_last_raise(db, last_raise)
 	puts "Employee Raises for the month of #{last_raise}: "
 	search_by_last_raise = db.execute("SELECT first_name, last_name, current_pay, evaluation_score FROM employees WHERE last_raise = ?;", [last_raise])
 	search_by_last_raise.each do |data|
-		puts "Name: #{data["first_name"]} #{data["last_name"]}"
-		puts "Salary: $#{data["current_pay"]} per hour"
-		puts "Monthly Evaluation Score: #{data["evaluation_score"]}"
+		puts "Name:\t#{data["first_name"]} #{data["last_name"]}"
+		puts "Salary:\t$#{data["current_pay"]} per hour"
+		puts "Monthly Evaluation Score:\t#{data["evaluation_score"]}"
 		puts "--------------------------"
 	end 
 end 
@@ -100,7 +100,7 @@ def update_pay_and_month(db, current_pay, last_raise, first_name)
 	puts "#{first_name}'s salary has been updated to $#{new_pay} per hour in the month of #{current_month}." 
 end 
 
-def update_evaluation_score(db, evaluation_score, first_name)
+def update_evaluation_score(db, current_pay, first_name)
 	puts "Enter #{first_name}'s evaluation_score for this month: "
 	update_score = gets.chomp.to_i
 	db.execute("UPDATE employees SET evaluation_score=? WHERE first_name=?;", [update_score, first_name])
@@ -118,17 +118,18 @@ def print_all(db)
 	puts "EMPLOYMANCE EMPLOYMATION"
 	print_all = db.execute("SELECT * FROM employees")
 	print_all.each do |data|
-		puts "Name: #{data["first_name"]} #{data["last_name"]}"
-		puts "Date of Hire: #{data["hire_date"]}"
-		puts "Position: #{data["current_position"]}"
-		puts "Salary: $#{data["current_pay"]} per hour"
-		puts "Last Raise: #{data["last_raise"]}"
-		puts "Monthly Evaluation Score: #{data["evaluation_score"]}"
+		puts "Name:\t#{data["first_name"]} #{data["last_name"]}"
+		puts "Date of Hire:\t#{data["hire_date"]}"
+		puts "Position:\t#{data["current_position"]}"
+		puts "Salary:\t$#{data["current_pay"]} per hour"
+		puts "Last Raise:\t#{data["last_raise"]}"
+		puts "Monthly Evaluation Score:\t#{data["evaluation_score"]}"
 		puts "--------------------------"
 	end 
 end
 
 def directory(db)
+	puts "--------------------------"
 	puts "EMPLOYMANCE EMPLOYMATION"
 	puts "--------------------------"
 	puts "Please select one of the following options: "
@@ -147,28 +148,28 @@ def directory(db)
 		user_input = gets.chomp
 		case 
 		when user_input == "1"
-			input_information
+			input_information(db)
 			select_option = true
 		when user_input == "2"
-			search_by_name
+			search_by_name(db, first_name)
 			select_option = true
 		when user_input == "3"
-			search_by_last_raise
+			search_by_last_raise(db, last_raise)
 			select_option = true
 		when user_input == "4"
-			update_position
+			update_position(db, current_position, first_name)
 			select_option = true
 		when user_input == "5"
-			update_pay_and_month
+			update_pay_and_month(db, current_pay, last_raise, first_name)
 			select_option = true
 		when user_input == "6"
-			update_evaluation_score
+			update_evaluation_score(db, current_pay, first_name)
 			select_option = true
 		when user_input == "7"
-			remove_employee
+			remove_employee(db, first_name)
 			select_option = true
 		when user_input == "8"
-			print_all
+			print_all(db)
 			select_option = true 
 		when user_input == "9"
 			select_option = true
@@ -178,10 +179,15 @@ def directory(db)
 	end
 end 
 
+
+
 # input_information(db)
 # search_by_name(db, "Caroline")
 # search_by_last_raise(db, "July")
 # print_all(db)
 # update_position(db, "manager", "Carol")
-update_pay_and_month(db, 14, "July", "Carol")
+# update_pay_and_month(db, 14, "July", "Carol")
+# update_evaluation_score(db, 3, "Carol")
+# remove_employee("Carol")
+directory(db)
 
