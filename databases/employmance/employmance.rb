@@ -58,9 +58,12 @@ def input_information(db)
 	evaluation_score = gets.chomp.to_i
 
 	db.execute("INSERT INTO employees (first_name, last_name, hire_date, current_position, current_pay, last_raise, evaluation_score) VALUES (?, ?, ?, ?, ?, ?, ?)", [first_name, last_name, hire_date, current_position, current_pay, last_raise, evaluation_score])
+	
+	puts "You have successfully stored this employee's employmation!"
 end 
 
 def search_by_name(db, first_name)
+	valid_input(db, first_name)
 	search_by_name = db.execute("SELECT * FROM employees where first_name = ?;", [first_name])
 	search_by_name.each do |data|
 		puts "Name:\t#{data["first_name"]} #{data["last_name"]}"
@@ -72,46 +75,41 @@ def search_by_name(db, first_name)
 	end 
 end
 
-def search_by_last_raise(db, last_raise)
-	puts "Employee Raises for the month of #{last_raise}: "
-	search_by_last_raise = db.execute("SELECT first_name, last_name, current_pay, evaluation_score FROM employees WHERE last_raise = ?;", [last_raise])
-	search_by_last_raise.each do |data|
-		puts "Name:\t#{data["first_name"]} #{data["last_name"]}"
-		puts "Salary:\t$#{data["current_pay"]} per hour"
-		puts "Monthly Evaluation Score:\t#{data["evaluation_score"]}"
-		puts "--------------------------"
-	end 
-end 
-
-def update_position(db, current_position, first_name)
+def update_position(db, first_name)
+	valid_input(db, first_name)
 	puts "Enter #{first_name}'s new position: "
 	new_position = gets.chomp.capitalize 
 	db.execute("UPDATE employees SET current_position=? WHERE first_name = ?;", [new_position, first_name])
 	puts "#{first_name}'s position has been updated to #{new_position}."
 end
 
-def update_pay_and_month(db, current_pay, last_raise, first_name)
+
+def update_pay_and_month(db, first_name)
+	valid_input(db, first_name)
 	puts "Enter #{first_name}'s new pay rate per hour: "
 	new_pay = gets.chomp.to_i
-	update_pay = db.execute("UPDATE employees SET current_pay=? WHERE first_name=?;", [new_pay, first_name])
+	db.execute("UPDATE employees SET current_pay=? WHERE first_name=?;", [new_pay, first_name])
 	puts "Enter the current month: "
 	current_month = gets.chomp.capitalize
 	db.execute("UPDATE employees SET last_raise=? WHERE first_name=?;", [current_month, first_name])
 	puts "#{first_name}'s salary has been updated to $#{new_pay} per hour in the month of #{current_month}." 
 end 
 
-def update_evaluation_score(db, current_pay, first_name)
+def update_evaluation_score(db, first_name)
+	valid_input(db, first_name)
 	puts "Enter #{first_name}'s evaluation_score for this month: "
 	update_score = gets.chomp.to_i
 	db.execute("UPDATE employees SET evaluation_score=? WHERE first_name=?;", [update_score, first_name])
 	puts "#{first_name}'s new evaluation score is #{update_score}."
-
+	back_to_menu(db)
 end
 
 def remove_employee(db, first_name)
+	valid_input(db, first_name)
 	puts "Enter the first name of the employee you wish to remove: "
 	db.execute("DELETE FROM employees WHERE first_name=?;", [first_name])
 	puts "#{first_name} has been removed."
+	back_to_menu(db)
 end 
 
 def print_all(db)
@@ -126,7 +124,28 @@ def print_all(db)
 		puts "Monthly Evaluation Score:\t#{data["evaluation_score"]}"
 		puts "--------------------------"
 	end 
+	back_to_menu(db)
 end
+
+def valid_input(db, first_name)
+	input = false
+	search_result = db.execute("SELECT * FROM employees WHERE first_name = ?;", [first_name])
+	search_result.each do |data|
+		if data["first_name"] == first_name
+			input = true
+		else
+		puts "Not a valid entry."
+		input
+		end
+	end 
+end
+
+def back_to_menu(db)
+	puts ""
+	puts "Press 'enter' to go back to the main menu."
+	directory(db)
+end
+
 
 def directory(db)
 	puts "--------------------------"
@@ -135,7 +154,6 @@ def directory(db)
 	puts "Please select one of the following options: "
 	puts "[1] Add Employee"
 	puts "[2] Search by Employee Name"
-	puts "[3] Search by Month of Raise"
 	puts "[4] Update Employee's Position"
 	puts "[5] Update Employee's Pay Rate and Month of Raise"
 	puts "[6] Update Employee's Month Evaluation Score"
@@ -146,35 +164,42 @@ def directory(db)
 	select_option = false
 	until select_option
 		user_input = gets.chomp
-		case 
-		when user_input == "1"
-			input_information(db)
+		case user_input
+		when "1"
+			input_information(db, first_name)
 			select_option = true
-		when user_input == "2"
+		when "2"
+			puts "Enter the first name of the employee you wish to search for: "
+			first_name = gets.chomp
 			search_by_name(db, first_name)
 			select_option = true
-		when user_input == "3"
-			search_by_last_raise(db, last_raise)
+		when "3"
+			puts "Enter the first name of the employee to update his/ her position: "
+			first_name = gets.chomp 
+			update_position(db, first_name)
 			select_option = true
-		when user_input == "4"
-			update_position(db, current_position, first_name)
+		when "4"
+			puts "Enter the first name of the employee to update his / her pay rate: "
+			first_name = gets.chomp 
+			update_pay_and_month(db, first_name)
 			select_option = true
-		when user_input == "5"
-			update_pay_and_month(db, current_pay, last_raise, first_name)
+		when "5"
+			puts "Enter the first name of the employee to update his / her evaluation score: "
+			first_name = gets.chomp 
+			update_evaluation_score(db, first_name)
 			select_option = true
-		when user_input == "6"
-			update_evaluation_score(db, current_pay, first_name)
-			select_option = true
-		when user_input == "7"
+		when "6"
+			puts "Enter the first name of the employee you wish to remove: "
+			first_name = gets.chomp
 			remove_employee(db, first_name)
 			select_option = true
-		when user_input == "8"
+		when "7"
 			print_all(db)
 			select_option = true 
-		when user_input == "9"
+		when "8"
 			select_option = true
 		else 
-			puts "Select an option between 1 and 9."
+			puts "Select an option between 1 and 8."
 		end
 	end
 end 
